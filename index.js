@@ -242,9 +242,16 @@ If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 // Hint - Look up the .split() method
 
 function get20s(array) {
- 
+  let newArray = [];
+  for(let i = 0; i < array.length; i++){
+    const dates = array[i].years.split(' ');
+    let dateArray = array[i].years.split(dates[1]);
+    if(dateArray[0] > 1899 & dateArray[1] < 2001){
+      newArray.push(array[i].name);
+    }
+  }
+  return newArray
 }
-
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -255,14 +262,11 @@ Use removeArtist to do the following:
 4. Return the length of the remaining dataset.
 For example, if removeArtist is invoked with the artists array and the number 0, it will remove Amedeo Modigliani from our dataset and return the number 19. */
 
-function removeArtist(array, number) {
-  for (let i = 0; i< array.length; i++){
-    if(index !== -1){
-      array.splice(i, 1);
-    }
-    } return array;
+function removeArtist(array, index) {
+  array.splice(index, 1);
+  console.log(array);
+  return array.length
 }
-console.log(removeArtist(artists[0])) ;
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use addArtist to do the following: 
@@ -278,9 +282,17 @@ Use addArtist to do the following:
   }  
 3. Return the resulting array
 Example: addArtist(artists) should return the artists array with the above object added to the end of the array. */
-
-function addArtist(/*Your Code Here*/) {
-  /*Your Code Here*/
+function addArtist(array) {
+  let newObj = {
+    id: 20,
+    name: 'Jostin Marrero',
+    years: '2001 - 2021',
+    genre: 'Web Design',
+    nationality: 'North American',
+    bio: 'from nothing to something'
+  }
+  array.push(newObj);
+  return array
 }
 
 
@@ -291,9 +303,17 @@ Use lotsOfArt to do the following:
 2. Return an array with names of artists in the received array who painted more than 100 paintings.
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
-function lotsOfArt(/*Your Code Here*/) {
-  /*Your Code Here*/
+function lotsOfArt(array, pantings) {
+  const filtered = [];
+  for(let i = 0; i < array.length; i++){
+    if(array[i].paintings >= 100){
+      filtered.push(array[i].name)
+    }
+  }  
+  return filtered;
 }
+
+
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 8: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -304,11 +324,15 @@ Use artistInfo to do the following:
 For example artistInfo(artists, 'Frida Kahlo') will return: 
   ["Frida Kahlo de Rivera (Spanish pronunciation: [ˈfɾiða ˈkalo]; born Magdalena Carmen Frida Kahlo y Calderón; 6 July 1907 – 13 July 1954) was a Mexican artist who painted many portraits, self-portraits and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class and race in Mexican society. Her paintings often had strong autobiographical elements and mixed realism with fantasy. In addition to belonging to the post-revolutionary Mexicayotl movement, which sought to define a Mexican identity, Kahlo has been described as a surrealist or magical realist.Born to a German father and a mestiza mother, Kahlo spent most of her childhood and adult life at her family home in Coyoacán, La Casa Azul, now known and publicly accessible as the Frida Kahlo Museum. She was disabled by polio as a child. Until a traffic accident at age eighteen caused lifelong pain and medical problems, she had been a promising student headed for medical school. During her recovery, she returned to her childhood hobby of art with the idea of becoming an artist."]
 */
-function artistInfo(/*Your Code Here*/){
-  /*Your Code Here*/
+function artistInfo(artists, artistName){
+  let artistBio = []
+  for (let i = 0; i < artists.length; i++){
+  if (artists[i].name === artistName){
+    artistBio.push(artists[i].bio)
+    } 
+  } return artistBio
 }
-
-
+console.log(artistInfo(artists,'Albrecht Dürer' ));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 9: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use artistByCountry to do the following: 
@@ -318,12 +342,14 @@ Use artistByCountry to do the following:
 For example artistByCountry(artists, 'Spanish') will return: [ 'Salvador Dali', 'Pablo Picasso', 'Francisco Goya']
 */
 
-function artistByCountry(/*Your Code Here*/){
-  /*Your Code Here*/
+function artistByCountry(artists, artistNationality){
+  let artistNames = []
+  for (let i = 0; i < artists.length; i++){
+    if (artists[i].nationality === artistNationality){
+      artistNames.push(artists[i].name)
+    }
+  }  return artistNames
 }
-
-
-
 /* ***** END OF TASKS ***** */
 
 
